@@ -1,0 +1,127 @@
+unit UCadBombas;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, UFrame_Gerenciador, Vcl.StdCtrls,
+  Vcl.Buttons, Vcl.ExtCtrls, Data.DB, Vcl.Grids, Vcl.DBGrids,Datasnap.DBClient,
+   Datasnap.Provider,UClasse_Tanques, UClasse_Bombas;
+
+type
+  TFCadBombas = class(TForm)
+    FFrame_Gerenciador1: TFFrame_Gerenciador;
+    dbBombas: TDBGrid;
+    dsConBombas: TDataSource;
+    dspConBombas: TDataSetProvider;
+    cdsConBombas: TClientDataSet;
+    cdsConBombasID: TIntegerField;
+    cdsConBombasTANQUE_ID: TIntegerField;
+    cdsConBombasNUM_BOMBA: TIntegerField;
+    cdsConBombasCALC_BOMBA: TStringField;
+    procedure FormShow(Sender: TObject);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
+    procedure dbBombasDrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure FFrame_Gerenciador1btSairClick(Sender: TObject);
+    procedure FFrame_Gerenciador1btIncluirClick(Sender: TObject);
+    procedure cdsConBombasCalcFields(DataSet: TDataSet);
+    procedure FormCreate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    Tanques : TClasse_Tanques;
+    DelBombas : TClasse_Bombas;
+
+  end;
+
+var
+  FCadBombas: TFCadBombas;
+
+implementation
+
+{$R *.dfm}
+
+uses Uprinc, UMntBombas, Umodulo;
+
+{ TFCadBombas }
+
+procedure TFCadBombas.cdsConBombasCalcFields(DataSet: TDataSet);
+begin
+  cdsConBombasCALC_BOMBA.AsString :=  Tanques.fnc_Consulta_id (cdsConBombasTANQUE_ID.AsString);
+end;
+
+procedure TFCadBombas.dbBombasDrawColumnCell(Sender: TObject; const Rect: TRect;
+  DataCol: Integer; Column: TColumn; State: TGridDrawState);
+begin
+  if not Odd((dbBombas.DataSource.DataSet as TClientDataSet).RecNo) then
+  begin
+      if not (gdSelected in State) then
+      begin
+           dbBombas.Canvas.Brush.Color := $00CBEAFE;
+           dbBombas.Canvas.FillRect(Rect);
+           dbBombas.DefaultDrawDataCell(Rect,Column.Field,State);
+      end;
+  end;
+
+  dbBombas.Canvas.Font.Color := clBlack;
+
+  if gdSelected in State then
+  begin
+      dbBombas.Canvas.Brush.Color:= $00F3EBD1;
+      dbBombas.Canvas.FillRect(rect);
+  end;
+  dbBombas.DefaultDrawDataCell(Rect,dbBombas.Columns[DataCol].Field, State);
+end;
+
+procedure TFCadBombas.FFrame_Gerenciador1btIncluirClick(Sender: TObject);
+begin
+  if cdsConBombas.RecordCount = 2 then
+  begin
+    Application.MessageBox('Somente 4 tipos de combustível podem ser cadastrados !','Atenção',MB_ICONEXCLAMATION);
+    Abort;
+  end;
+
+  Application.CreateForm(TFMntBombas, FMntBombas);
+  FMntBombas.var_incluse := True;
+  FMntBombas.ShowModal;
+  FreeAndNil(FMntBombas);
+  cdsConBombas.Refresh;
+end;
+
+procedure TFCadBombas.FFrame_Gerenciador1btSairClick(Sender: TObject);
+begin
+  Fprinc.FechaForm(Self);
+  Fprinc.FormBom := False;
+  Fprinc.VerificasAbas;
+  Close;
+end;
+
+procedure TFCadBombas.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  Tanques.Destroy;
+end;
+
+procedure TFCadBombas.FormCreate(Sender: TObject);
+begin
+  Tanques := TClasse_Tanques.Create(Dm.conexao);
+end;
+
+procedure TFCadBombas.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+  if (Key = #13) and not (ActiveControl is TMemo) then
+   begin
+     Perform(WM_NEXTDLGCTL,0,0);
+   end;
+end;
+
+procedure TFCadBombas.FormShow(Sender: TObject);
+begin
+  cdsConBombas.Open;
+  FFrame_Gerenciador1.pnlNome.Caption := 'Cadastro de Bombas';
+end;
+
+
+end.

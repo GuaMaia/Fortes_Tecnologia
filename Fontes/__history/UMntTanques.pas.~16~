@@ -1,0 +1,88 @@
+unit UMntTanques;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls,
+  UFrame_Cadastro, UClasse_Tanques;
+
+type
+  TFMntTanques = class(TForm)
+    Label1: TLabel;
+    Shape1: TShape;
+    Label2: TLabel;
+    Label3: TLabel;
+    FFrame_Cadastro1: TFFrame_Cadastro;
+    FFrame_Cadastro2: TFFrame_Cadastro;
+    Panel1: TPanel;
+    edId: TEdit;
+    cbTipo: TComboBox;
+    procedure FFrame_Cadastro2BtnSairClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FFrame_Cadastro2BtnSalvarClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    Tanques : TClasse_Tanques;
+    procedure novo;
+
+  end;
+
+var
+  FMntTanques: TFMntTanques;
+
+implementation
+
+{$R *.dfm}
+
+uses Umodulo;
+
+procedure TFMntTanques.alterar;
+begin
+  //
+end;
+
+procedure TFMntTanques.FFrame_Cadastro2BtnSairClick(Sender: TObject);
+begin
+  Close;
+end;
+
+procedure TFMntTanques.FFrame_Cadastro2BtnSalvarClick(Sender: TObject);
+begin
+  Tanques.dsTipo := cbTipo.ItemIndex;
+
+  try
+    Tanques.prc_Inserir;
+  except
+    on E: Exception do
+    begin
+      ShowMessage('Ocorreu um erro: ' + E.Message);
+    end;
+  end;
+
+  Close;
+end;
+
+procedure TFMntTanques.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  Tanques.Destroy;
+  Action := caFree;
+end;
+
+procedure TFMntTanques.FormCreate(Sender: TObject);
+begin
+  Tanques := TClasse_Tanques.Create(Dm.conexao);
+end;
+
+procedure TFMntTanques.novo;
+begin
+  edId.Clear;
+  cbTipo.ItemIndex := 0;
+
+  cbTipo.SetFocus;
+end;
+
+end.

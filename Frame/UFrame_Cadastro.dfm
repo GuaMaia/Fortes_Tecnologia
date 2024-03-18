@@ -1,0 +1,61 @@
+object FFrame_Cadastro: TFFrame_Cadastro
+  Left = 0
+  Top = 0
+  Width = 489
+  Height = 61
+  TabOrder = 0
+  object Panel1: TPanel
+    Left = 48
+    Top = 16
+    Width = 153
+    Height = 33
+    BevelOuter = bvNone
+    Color = 1932602
+    ParentBackground = False
+    TabOrder = 0
+    object BtnSalvar: TSpeedButton
+      Left = 0
+      Top = 0
+      Width = 153
+      Height = 33
+      Cursor = crHandPoint
+      Align = alClient
+      Caption = 'Confirmar'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      ExplicitLeft = 24
+      ExplicitWidth = 23
+      ExplicitHeight = 22
+    end
+  end
+  object Panel2: TPanel
+    Left = 230
+    Top = 16
+    Width = 153
+    Height = 33
+    BevelOuter = bvNone
+    Color = clRed
+    ParentBackground = False
+    TabOrder = 1
+    object BtnSair: TSpeedButton
+      Left = 0
+      Top = 0
+      Width = 153
+      Height = 33
+      Cursor = crHandPoint
+      Align = alClient
+      Caption = 'Cancelar'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      ExplicitLeft = 48
+    end
+  end
+end

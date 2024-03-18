@@ -1,0 +1,48 @@
+unit URelAbaste;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, RLReport;
+
+type
+  TFRelAbaste = class(TForm)
+    RelGeral: TRLReport;
+    RLBand2: TRLBand;
+    RLLabel7: TRLLabel;
+    RLSystemInfo4: TRLSystemInfo;
+    RLSystemInfo5: TRLSystemInfo;
+    RLSystemInfo6: TRLSystemInfo;
+    RLBand5: TRLBand;
+    RLBand1: TRLBand;
+    RLLabel10: TRLLabel;
+    RLLabel1: TRLLabel;
+    RLLabel12: TRLLabel;
+    RLLabel2: TRLLabel;
+    RLLabel3: TRLLabel;
+    RLGroup1: TRLGroup;
+    RLDBText1: TRLDBText;
+    RLDBText2: TRLDBText;
+    RLLabel4: TRLLabel;
+    RLDBText3: TRLDBText;
+    RLDBText4: TRLDBText;
+    RLDBText5: TRLDBText;
+    RLDBText6: TRLDBText;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FRelAbaste: TFRelAbaste;
+
+implementation
+
+{$R *.dfm}
+
+uses uRelAbastecimento;
+
+
+end.

@@ -1,0 +1,244 @@
+object FGerAbastecimento: TFGerAbastecimento
+  Left = 0
+  Top = 0
+  BorderIcons = []
+  BorderStyle = bsSingle
+  Caption = 'Abastecimentos'
+  ClientHeight = 442
+  ClientWidth = 628
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -12
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  KeyPreview = True
+  OnKeyPress = FormKeyPress
+  OnShow = FormShow
+  TextHeight = 15
+  inline FFrame_Gerenciador1: TFFrame_Gerenciador
+    Left = 0
+    Top = 0
+    Width = 628
+    Height = 50
+    Align = alTop
+    TabOrder = 0
+    ExplicitWidth = 624
+    inherited Panel1: TPanel
+      Width = 628
+      ExplicitWidth = 624
+      inherited Panel2: TPanel
+        ExplicitHeight = 50
+        inherited btExcluir: TSpeedButton
+          OnClick = FFrame_Gerenciador1btExcluirClick
+          ExplicitLeft = 168
+          ExplicitTop = -6
+          ExplicitHeight = 50
+        end
+        inherited btAlterar: TSpeedButton
+          OnClick = FFrame_Gerenciador1btAlterarClick
+        end
+        inherited btIncluir: TSpeedButton
+          OnClick = FFrame_Gerenciador1btIncluirClick
+        end
+      end
+      inherited pnlNome: TPanel
+        ExplicitHeight = 50
+      end
+      inherited Panel4: TPanel
+        Left = 571
+        ExplicitLeft = 567
+        ExplicitHeight = 50
+        inherited btSair: TSpeedButton
+          OnClick = FFrame_Gerenciador1btSairClick
+        end
+      end
+    end
+  end
+  object dbAbastecimentos: TDBGrid
+    Left = 0
+    Top = 108
+    Width = 628
+    Height = 334
+    Align = alClient
+    DataSource = dsConsultaAbaste
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Segoe UI'
+    Font.Style = []
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+    ParentFont = False
+    TabOrder = 1
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -12
+    TitleFont.Name = 'Segoe UI'
+    TitleFont.Style = []
+    OnDrawColumnCell = dbAbastecimentosDrawColumnCell
+    OnTitleClick = dbAbastecimentosTitleClick
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'ID'
+        Title.Alignment = taRightJustify
+        Title.Caption = 'Id'
+        Width = 53
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'BOMBA_ID'
+        Title.Alignment = taRightJustify
+        Title.Caption = 'Bomba'
+        Width = 75
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'DATA_ABASTECIMENTO'
+        Title.Alignment = taCenter
+        Title.Caption = 'Data Abastecimento'
+        Width = 153
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'QTD'
+        Title.Alignment = taRightJustify
+        Title.Caption = 'Quantidade'
+        Width = 93
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'VALOR'
+        Title.Alignment = taRightJustify
+        Title.Caption = 'Valor'
+        Width = 100
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'VALOR_iMPOSTO'
+        Title.Alignment = taRightJustify
+        Title.Caption = 'Valor Imposto'
+        Visible = True
+      end>
+  end
+  object Panel2: TPanel
+    Left = 0
+    Top = 50
+    Width = 628
+    Height = 58
+    Align = alTop
+    BevelOuter = bvNone
+    TabOrder = 2
+    ExplicitLeft = -60
+    ExplicitTop = 53
+    ExplicitWidth = 688
+    object Label1: TLabel
+      Left = 14
+      Top = 8
+      Width = 91
+      Height = 15
+      Caption = 'Valor '#224' pesquisar:'
+    end
+    object btLimparFiltro: TSpeedButton
+      Left = 493
+      Top = 27
+      Width = 41
+      Height = 21
+      Hint = 'Limpar Filtro'
+      Glyph.Data = {
+        36030000424D3603000000000000360000002800000010000000100000000100
+        1800000000000003000001000000010000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000008080526241732
+        2E1C2D29151E1B0A0B0A03000000000000000000000000000000000000000000
+        000000020200383423736E63726F7C605E7754516A48425039322A201C080706
+        00000000000000000000000000000000040300393527555B884256C0314BCA26
+        3FD02336CD2534BF3138A531336E1D191A060500000000000000000000000000
+        201D18354EA23967E74170EE335CE12341C0172FAE1D30BA1625C1222FC53138
+        A4131128000000000000000000050200233E89518AFE5F95FB2C52B709164800
+        03192E2B25575A811E34C40E22C11D2CC92E38AA040415000000000000010B25
+        4984EF7EB7FF3662BD00010E0000002920044D51643251C6274DDD1A38D30D23
+        C1293DD319206C00000000000009235F79B4FF76B0FD061B470200001F180436
+        48763668E53D73F6244FDB02115A0F25951F3DDF2436A8000006000000152E70
+        92C2FF6DA1F201091F0C0702294D904F8EFC5898FF295CD8020E400601002C41
+        8D214BEA2541BC0001110000000A164992B8FF88B4F90E2665274D9C6FAFFF6C
+        B0FF255BC4000525000000322C1E3B5EC02C62F61B3DB4000005000000000012
+        617BCEB2D3FF6692EE84B4FF77AAF62B519A090A0D110A00211908384E7F3C79
+        F53674FF0922750000000000000000000F17498FA8F1BDDBFF92B8F92D51B619
+        1E3625262D27324934589B4D90F84C97FF174DCA000213000000000000000000
+        000000141A527A8ED8A7C5FF8AADF66C94E6628EDF669BF96FADFF5699FF1B52
+        C400082700000000000000000000000000000000000000001C2D387A6074BB73
+        8EDB6C90E5567CD52D54B508216700000B000000000000000000000000000000
+        00000000000000000000000000000400001B0000230000160000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000}
+      ParentShowHint = False
+      ShowHint = True
+      OnClick = btLimparFiltroClick
+    end
+    object edPes: TEdit
+      Left = 20
+      Top = 27
+      Width = 465
+      Height = 23
+      CharCase = ecUpperCase
+      TabOrder = 0
+      OnChange = edPesChange
+    end
+  end
+  object dsConsultaAbaste: TDataSource
+    DataSet = cdsConsultaAbaste
+    Left = 336
+  end
+  object cdsConsultaAbaste: TClientDataSet
+    Aggregates = <>
+    AutoCalcFields = False
+    Params = <>
+    ProviderName = 'dpsConsultaAbaste'
+    Left = 296
+    object cdsConsultaAbasteID: TIntegerField
+      FieldName = 'ID'
+    end
+    object cdsConsultaAbasteBOMBA_ID: TIntegerField
+      FieldName = 'BOMBA_ID'
+    end
+    object cdsConsultaAbasteDATA_ABASTECIMENTO: TDateField
+      Alignment = taCenter
+      FieldName = 'DATA_ABASTECIMENTO'
+      Required = True
+    end
+    object cdsConsultaAbasteQTD: TBCDField
+      FieldName = 'QTD'
+      Required = True
+      DisplayFormat = '###,##0.000'
+      EditFormat = '###,##0.000'
+      Precision = 12
+      Size = 3
+    end
+    object cdsConsultaAbasteVALOR: TBCDField
+      FieldName = 'VALOR'
+      Required = True
+      DisplayFormat = '###,##0.000'
+      EditFormat = '###,##0.000'
+      Precision = 12
+      Size = 3
+    end
+    object cdsConsultaAbasteVALOR_iMPOSTO: TBCDField
+      FieldName = 'VALOR_iMPOSTO'
+      Required = True
+      DisplayFormat = '###,##0.000'
+      EditFormat = '###,##0.000'
+      Precision = 12
+      Size = 3
+    end
+  end
+  object dpsConsultaAbaste: TDataSetProvider
+    DataSet = Dm.Q_Abastecimentos
+    Left = 264
+  end
+end

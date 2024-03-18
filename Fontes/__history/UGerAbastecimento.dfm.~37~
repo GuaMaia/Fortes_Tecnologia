@@ -1,0 +1,187 @@
+object FGerAbastecimento: TFGerAbastecimento
+  Left = 0
+  Top = 0
+  BorderIcons = []
+  BorderStyle = bsSingle
+  Caption = 'Abastecimentos'
+  ClientHeight = 442
+  ClientWidth = 628
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -12
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  KeyPreview = True
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnKeyPress = FormKeyPress
+  OnShow = FormShow
+  TextHeight = 15
+  inline FFrame_Gerenciador1: TFFrame_Gerenciador
+    Left = 0
+    Top = 0
+    Width = 628
+    Height = 50
+    Align = alTop
+    TabOrder = 0
+    ExplicitWidth = 624
+    inherited Panel1: TPanel
+      Width = 628
+      ExplicitWidth = 624
+      inherited Panel2: TPanel
+        ExplicitHeight = 50
+        inherited btExcluir: TSpeedButton
+          OnClick = FFrame_Gerenciador1btExcluirClick
+          ExplicitLeft = 168
+          ExplicitTop = -6
+          ExplicitHeight = 50
+        end
+        inherited btAlterar: TSpeedButton
+          OnClick = FFrame_Gerenciador1btAlterarClick
+        end
+        inherited btIncluir: TSpeedButton
+          OnClick = FFrame_Gerenciador1btIncluirClick
+        end
+      end
+      inherited pnlNome: TPanel
+        ExplicitHeight = 50
+      end
+      inherited Panel4: TPanel
+        Left = 571
+        ExplicitLeft = 567
+        ExplicitHeight = 50
+        inherited btSair: TSpeedButton
+          OnClick = FFrame_Gerenciador1btSairClick
+        end
+      end
+    end
+  end
+  object dbAbastecimentos: TDBGrid
+    Left = 0
+    Top = 50
+    Width = 628
+    Height = 392
+    Align = alClient
+    DataSource = dsConsultaAbaste
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Segoe UI'
+    Font.Style = []
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+    ParentFont = False
+    TabOrder = 1
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -12
+    TitleFont.Name = 'Segoe UI'
+    TitleFont.Style = []
+    OnDrawColumnCell = dbAbastecimentosDrawColumnCell
+    OnTitleClick = dbAbastecimentosTitleClick
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'ID'
+        Title.Alignment = taRightJustify
+        Title.Caption = 'Id'
+        Width = 53
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'calcNUM_BOMBA'
+        Title.Caption = 'Bomba'
+        Width = 156
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'DATA_ABASTECIMENTO'
+        Title.Alignment = taCenter
+        Title.Caption = 'Data Abastecimento'
+        Width = 153
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'QTD'
+        Title.Alignment = taRightJustify
+        Title.Caption = 'Quantidade'
+        Width = 93
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'VALOR'
+        Title.Alignment = taRightJustify
+        Title.Caption = 'Valor'
+        Width = 100
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'VALOR_iMPOSTO'
+        Title.Alignment = taRightJustify
+        Title.Caption = 'Valor Imposto'
+        Visible = True
+      end>
+  end
+  object dsConsultaAbaste: TDataSource
+    DataSet = cdsConsultaAbaste
+    Left = 336
+  end
+  object cdsConsultaAbaste: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dpsConsultaAbaste'
+    OnCalcFields = cdsConsultaAbasteCalcFields
+    Left = 296
+    object cdsConsultaAbasteID: TIntegerField
+      FieldName = 'ID'
+    end
+    object cdsConsultaAbasteBOMBA_ID: TIntegerField
+      FieldName = 'BOMBA_ID'
+    end
+    object cdsConsultaAbasteDATA_ABASTECIMENTO: TDateField
+      Alignment = taCenter
+      FieldName = 'DATA_ABASTECIMENTO'
+      Required = True
+    end
+    object cdsConsultaAbasteQTD: TBCDField
+      FieldName = 'QTD'
+      Required = True
+      DisplayFormat = '###,##0.000'
+      EditFormat = '###,##0.000'
+      Precision = 12
+      Size = 3
+    end
+    object cdsConsultaAbasteVALOR: TBCDField
+      FieldName = 'VALOR'
+      Required = True
+      DisplayFormat = '###,##0.000'
+      EditFormat = '###,##0.000'
+      Precision = 12
+      Size = 3
+    end
+    object cdsConsultaAbasteVALOR_iMPOSTO: TBCDField
+      FieldName = 'VALOR_iMPOSTO'
+      Required = True
+      DisplayFormat = '###,##0.000'
+      EditFormat = '###,##0.000'
+      Precision = 12
+      Size = 3
+    end
+    object cdsConsultaAbastecalcNUM_BOMBA: TStringField
+      DisplayWidth = 50
+      FieldKind = fkCalculated
+      FieldName = 'calcNUM_BOMBA'
+      Size = 50
+      Calculated = True
+    end
+  end
+  object dpsConsultaAbaste: TDataSetProvider
+    DataSet = Dm.Q_Abastecimentos
+    Left = 264
+  end
+end
